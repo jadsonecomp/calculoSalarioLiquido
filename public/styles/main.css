@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #f0f0f5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  color: darkgreen;
+  font-size: 40px;
+}
+
+#subTitle {
+  align-items: center;
+  text-align: justify;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 40px;
+}
+
+.calcSalary {
+  display: grid;
+  align-items: center;
+  text-align: justify;
+  border: solid;
+  border-radius: 8px;
+  border-color: darkslategray;
+  width: 740px;
+  height: 300px;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  padding: 10px 10px 10px 10px;
+}
+
+form {
+  display: grid;
+  align-items: center;
+  text-align: justify;
+  width: 700px;
+  height: 240px;
+}
+
+#calcTitle {
+  align-items: center;
+  text-align: center;
+  font-size: 25px;
+  color: darkgreen;
+  margin-bottom: 15px;
+}
+
+.inputField {
+  font-size: 20px;
+  color: rgb(0, 20, 0);
+  margin-left: 50px;
+  margin-right: auto;
+}
+
+#inputGrossSalary,
+#inputDeduction,
+#inputNumberOfDependents {
+  font-size: 20px;
+}
+
+#inputLabelGrossSalary {
+  margin-right: 28px;
+}
+
+#inputLabelDeduction {
+  margin-right: 48px;
+}
+
+#inputGrossSalary,
+#inputDeduction,
+#inputNumberOfDependents {
+  width: 400px;
+}
+
+.submitSalary {
+  align-items: center;
+  text-align: center;
+  width: auto;
+  height: auto;
+}
+
+#inputSubmitSalary,
+#inputClearSalary {
+  font-size: 20px;
+  border-radius: 8px;
+  align-items: center;
+  text-align: center;
+  background-color: darkgreen;
+  color: white;
+  width: 150px;
+  height: 40px;
+  margin-left: 90px;
+  margin-right: 90px;
+}
+
+.netSalary {
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  border: solid;
+  border-radius: 8px;
+  border-color: darkslategray;
+  width: 740px;
+  height: 50px;
+  background-color: rgb(1, 156, 27);
+  font-size: 25px;
+  color: rgb(241, 210, 210);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  padding: 10px 10px 10px 10px;
+}
+
+.positionRight {
+  margin-right: 10px;
+  margin-left: auto;
+}
+
+.positionLeft {
+  margin-left: 10px;
+}
+
+.divtableSalary {
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  border: solid;
+  border-radius: 8px;
+  border-color: darkslategray;
+  width: 740px;
+  height: 250px;
+  background-color: white;
+  font-size: 25px;
+  color: rgb(0, 20, 0);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  padding: 10px 10px 10px 10px;
+}
+
+.tableSalary {
+  display: box;
+  align-items: center;
+  text-align: justify;
+  width: 720px;
+  height: 250px;
+
+  border: solid;
+}

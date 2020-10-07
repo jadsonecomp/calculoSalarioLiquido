@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300;1,700&family=Ubuntu:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../public/styles/main.css" />
+  </head>
+  <body>
+    <h1>Cálculo do Salário Líquido</h1>
+
+    <p id="subTitle">
+      Este cálculo corresponde ao salário bruto menos os descontos oficiais. Os
+      principais descontos são os referentes ao INSS e ao Imposto de Renda.
+    </p>
+
+    <div class="calcSalary">
+      <p id="calcTitle">Calculadora Salário Líquido</p>
+
+      <form action="">
+        <div class="inputField">
+          <label
+            for="Salário Bruto"
+            class="inputLabel"
+            id="inputLabelGrossSalary"
+            >Salário Bruto:</label
+          >
+          <!-- <span class="inputSymbol">R$</span> -->
+          <input
+            autofocus="autofocus"
+            type="text"
+            pattern="\d+,?\d{0,2}"
+            name="grossSalary"
+            id="inputGrossSalary"
+            placeholder="0,00"
+            title="Valor Salário Bruto (ex: 2000,99)"
+            maxlength="20"
+            required="required"
+          />
+        </div>
+
+        <div class="inputField">
+          <label for="Descontos" class="inputLabel" id="inputLabelDeduction"
+            >Descontos:</label
+          >
+
+          <input
+            autofocus="autofocus"
+            type="text"
+            pattern="\d+,?\d{0,2}"
+            name="deduction"
+            id="inputDeduction"
+            placeholder="0,00"
+            title="Valor total dos descontos (ex: 100,50)"
+            maxlength="20"
+          />
+        </div>
+
+        <div class="inputField">
+          <label for="Número de Dependentes" class="inputLabel"
+            >N° Dependentes:</label
+          >
+
+          <input
+            autofocus="autofocus"
+            type="number"
+            name="numberOfDependents"
+            id="inputNumberOfDependents"
+            placeholder="0"
+            defaultValue="0"
+            min="0"
+            max="50"
+            title="Número de dependentes (0 a 50)"
+          />
+        </div>
+
+        <div class="submitSalary">
+          <input
+            type="submit"
+            name="submitSalary"
+            id="inputSubmitSalary"
+            value="Calcular"
+          />
+
+          <input
+            type="reset"
+            name="clearSalary"
+            id="inputClearSalary"
+            value="Limpar"
+          />
+        </div>
+      </form>
+    </div>
+
+    <div id="calcNetSalary"></div>
+
+    <div id="tableSalary"></div>
+
+    <script src="../public/scripts/index.js"></script>
+  </body>
+</html>
