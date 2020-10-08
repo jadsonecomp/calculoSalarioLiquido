@@ -3,9 +3,6 @@ window.addEventListener('load', start);
 function start() {
   console.log('Carregou');
   preventFormSubmit();
-  activateInputGrossSalary();
-  activateInputDeduction();
-  activateInputNumberOfDependents();
 }
 
 function getInputGrossSalary() {
@@ -93,7 +90,7 @@ function preventFormSubmit() {
     if (baseCalc <= 1903.98) {
 
       aliquotaIrrf = "0%";
-      valorIrrf = baseCalc;
+      valorIrrf = valorIrrfIni;
 
     } else {
       if ((baseCalc > 1903.98 && baseCalc <= 2826.65)) {
@@ -124,7 +121,7 @@ function preventFormSubmit() {
       }
     }
 
-    valorDescIrrf = baseCalc - valorIrrf;
+    valorDescIrrf = valorIrrfIni - valorIrrf;
     return valorIrrf;
   }
 
@@ -147,20 +144,6 @@ function preventFormSubmit() {
   }
 
   function printTable(salaryResult) {
-    var column = ['Descrição', 'Alíquota', 'Proventos', 'Descontos'];
-
-    var descricao = [
-      'Descrição',
-      'Salário Bruto',
-      'INSS',
-      'IRRF',
-      'Outros Descontos',
-      'Total',
-      'Resultado',
-    ];
-
-    var aliquota = ['Alíquota', '', aliquotaInss, aliquotaIrrf, '', '', ''];
-
     var getGrossSalary = getInputGrossSalary().value;
     var getGrossSalaryNumber = parseFloat(editInput(getGrossSalary));
 
@@ -168,8 +151,6 @@ function preventFormSubmit() {
       style: 'currency',
       currency: 'BRL',
     });
-
-    var proventos = ['Proventos', grossSalary, '', '', '', grossSalary, ''];
 
     var totDeduction = valorDescInss + valorDescIrrf + valorDesconto;
 
@@ -193,6 +174,20 @@ function preventFormSubmit() {
       currency: 'BRL',
     });
 
+    var descricao = [
+      'Descrição',
+      'Salário Bruto',
+      'INSS',
+      'IRRF',
+      'Outros Descontos',
+      'Total',
+      'Resultado',
+    ];
+
+    var aliquota = ['Alíquota', '', aliquotaInss, aliquotaIrrf, '', '', ''];
+
+    var proventos = ['Proventos', grossSalary, '', '', '', grossSalary, ''];
+
     // prettier-ignore
     var desconto = [
       'Descontos',
@@ -206,29 +201,85 @@ function preventFormSubmit() {
 
     for (let index = 0; index < descricao.length; index++) {
       var tr = document.createElement('tr');
+      const penultimateLine = descricao.length - 1;
+      const antepenultimateLine = descricao.length - 2;
+      const firstLine = 0;
 
-      var td = document.createElement('td');
-      td.textContent = descricao[index];
+      if (index === firstLine) {
+        var th = document.createElement('th');
+        th.textContent = descricao[index];
 
-      var td1 = document.createElement('td');
-      td1.textContent = aliquota[index];
+        var th1 = document.createElement('th');
+        th1.textContent = aliquota[index];
 
-      var td2 = document.createElement('td');
-      td2.textContent = proventos[index];
+        var th2 = document.createElement('th');
+        th2.textContent = proventos[index];
 
-      var td3 = document.createElement('td');
-      td3.textContent = desconto[index];
+        var th3 = document.createElement('th');
+        th3.textContent = desconto[index];
 
-      tr.appendChild(td);
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
+        tr.appendChild(th);
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+      } else {
+        var td = document.createElement('td');
+        td.textContent = descricao[index];
+        td.classList.add('boldClass');
+
+        var td1 = document.createElement('td');
+        td1.textContent = aliquota[index];
+
+        var td2 = document.createElement('td');
+        td2.textContent = proventos[index];
+
+        var td3 = document.createElement('td');
+        td3.textContent = desconto[index];
+
+        if (index < penultimateLine) {
+          td1.classList.add('deductionColor');
+          td2.classList.add('earningsColor');
+          td3.classList.add('deductionColor');
+          if (index < antepenultimateLine) {
+            td.classList.add('gridTableClass');
+            td1.classList.add('gridTableClass');
+            td2.classList.add('gridTableClass');
+            td3.classList.add('gridTableClass');
+          }
+          if (index === antepenultimateLine) {
+            td2.classList.add('gridTableClass');
+            td3.classList.add('gridTableClass');
+          }
+        } else {
+          td3.classList.add('earningsColor');
+          td3.classList.add('boldClass');
+
+          tr.classList.add('rowClass');
+        }
+
+        tr.appendChild(td);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+      }
 
       table.appendChild(tr);
     }
     divTableSalary.appendChild(table);
     divTableSalary.classList.add('divtableSalary');
     table.classList.add('tableSalary');
+  }
+
+  function removeTable() {
+    divTableSalary.classList.remove('divtableSalary');
+    table.classList.remove('tableSalary');
+    table.textContent = '';
+  }
+
+  function removeNetSalary() {
+    divCalcNetSalary.classList.remove('netSalary');
+    labelNetSalary.textContent = '';
+    labelValorNetSalart.textContent = '';
   }
 
   function handleSubmit(event) {
@@ -243,6 +294,8 @@ function preventFormSubmit() {
       labelNetSalary.classList.add('positionLeft');
       labelValorNetSalart.classList.add('positionRight');
     }
+
+    removeTable();
 
     var salaryResult = calcSalarySubDeduction().toLocaleString('pt-BR', {
       style: 'currency',
@@ -260,14 +313,12 @@ function preventFormSubmit() {
   }
 
   function handleReset(event) {
-    divCalcNetSalary.classList.remove('netSalary');
-    labelNetSalary.textContent = '';
-    labelValorNetSalart.textContent = '';
+    removeNetSalary();
 
-    divTableSalary.classList.remove('divtableSalary');
-    table.classList.remove('tableSalary');
-    table.textContent = '';
-    //divTableSalary.removeChild(table);
+    removeTable();
+
+    var initialInputGrossSalary = getInputGrossSalary();
+    initialInputGrossSalary.focus();
   }
 
   var divCalcNetSalary = document.querySelector('#calcNetSalary');
@@ -287,23 +338,3 @@ function preventFormSubmit() {
   form.addEventListener('submit', handleSubmit);
   form.addEventListener('reset', handleReset);
 }
-
-function activateInputGrossSalary() {
-  // function handleKeyup(event) {
-  //   var numberConvert = inputGrossSalary.value;
-  //   inputGrossSalary.value = numberConvert.toLocaleString('pt-BR', {
-  //     style: 'currency',
-  //     currency: 'BRL',
-  //   });
-  // }
-  // function handleOnBlur(event) {
-  //   var currentInputGrossSalary = event.target.value.trim();
-  //   console.log('currentInputGrossSalary: ' + currentInputGrossSalary);
-  // }
-  // var inputGrossSalary = getInputGrossSalary();
-  // inputGrossSalary.addEventListener('onblur', handleOnBlur);
-}
-
-function activateInputDeduction() {}
-
-function activateInputNumberOfDependents() {}

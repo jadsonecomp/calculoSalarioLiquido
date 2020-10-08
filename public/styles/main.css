@@ -130,7 +130,8 @@ form {
   height: 50px;
   background-color: rgb(1, 156, 27);
   font-size: 25px;
-  color: rgb(241, 210, 210);
+  font-weight: bold;
+  color: whitesmoke;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 40px;
@@ -161,15 +162,55 @@ form {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 40px;
-  padding: 10px 10px 10px 10px;
+  /* padding: 10px 10px 10px 10px; */
 }
 
 .tableSalary {
   display: box;
   align-items: center;
   text-align: justify;
-  width: 720px;
-  height: 250px;
+  background-color: white;
+  width: 735px;
+  height: 240px;
 
+  border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+  background-color: #b9b7b7;
+}
+
+tr:hover {
+  background-color: #8b9eaa;
+}
+
+th {
   border: solid;
+  border-color: rgb(207, 197, 197);
+  background-color: rgb(2, 39, 8);
+  color: white;
+}
+
+.deductionColor {
+  color: red;
+}
+
+.earningsColor {
+  color: green;
+}
+
+.boldClass {
+  font-weight: bold;
+}
+
+.rowClass {
+  border: solid;
+  border-color: rgb(207, 197, 197);
+  background-color: rgb(2, 39, 8);
+  color: white;
+}
+
+.gridTableClass {
+  border: solid;
+  border-color: rgb(207, 197, 197);
 }
