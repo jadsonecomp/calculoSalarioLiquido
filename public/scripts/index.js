@@ -1,7 +1,6 @@
 window.addEventListener('load', start);
 
 function start() {
-  console.log('Carregou');
   preventFormSubmit();
 }
 
@@ -301,8 +300,6 @@ function preventFormSubmit() {
       style: 'currency',
       currency: 'BRL',
     });
-
-    console.log('Salário Líquido: ' + salaryResult);
 
     setNetSalary();
 
